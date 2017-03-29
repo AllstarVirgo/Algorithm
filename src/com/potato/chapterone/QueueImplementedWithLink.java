@@ -113,11 +113,20 @@ public class QueueImplementedWithLink<T> implements Iterable<T> {
         return item;
     }
 
+    public int max(Node first){
+        if(isEmpty())return 0;
+        int max= (Integer) first.item;
+        if(first.next==null)return max;
+        max=Math.max(max,max(first.next));
+        return max;
+    }
+
 
 
     public static void main(String[] args) {
         QueueImplementedWithLink<Integer>demo=new QueueImplementedWithLink<>();
         for(int i=0;i<5;i++)demo.push(i);
-        for(Integer integer:demo) System.out.println(integer);
+        for (int i=10;i>0;i--)demo.push(i);
+        System.out.println(demo.max(demo.first));
     }
 }
