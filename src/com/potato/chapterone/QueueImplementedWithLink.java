@@ -30,6 +30,58 @@ public class QueueImplementedWithLink<T> implements Iterable<T> {
         }
     }
 
+    /*
+    删除尾部节点
+     */
+    public void deleteLastNode(){
+        Node nodeBeforeLast=null;
+        for (Node x=first;x!=null;x=x.next){
+            if(x.next.equals(last))nodeBeforeLast=x;
+        }
+        if(nodeBeforeLast!=null)nodeBeforeLast.next=null;
+        last=nodeBeforeLast;
+    }
+
+    /**
+     * 删除链表的第K个元素
+     * 找到链表中第k个元素的前一个元素
+     * @return
+     */
+    public void delete(int k){
+        assert (k<=N);
+        if(N==1){
+            first=null;
+        }
+        Node x=first;
+        Node nodeBeforeK=null;
+        for(int i=0;i<k-1;i++){
+            nodeBeforeK=x;
+            x=x.next;
+        }
+        nodeBeforeK.next=nodeBeforeK.next.next;
+    }
+
+    /**
+     * 检索给定链表中是否包含特定关键词`
+     * @param link
+     * @param key
+     * @return
+     */
+    public boolean find(QueueImplementedWithLink link,String key){
+        for(Node x=first;x!=null;x=x.next){
+            String content= (String) x.item;
+            if(content.equals(key))return true;
+        }
+        return false;
+    }
+
+    public void removeAfter(Node node){
+        /*无指向的一串链表会被回收吗？*/
+        if(node.next!=null)node.next=null;
+    }
+
+
+
     public boolean isEmpty() {
         return first==null;
     }
@@ -60,6 +112,8 @@ public class QueueImplementedWithLink<T> implements Iterable<T> {
         N--;
         return item;
     }
+
+
 
     public static void main(String[] args) {
         QueueImplementedWithLink<Integer>demo=new QueueImplementedWithLink<>();
