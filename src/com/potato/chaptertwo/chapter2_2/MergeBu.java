@@ -25,6 +25,19 @@ public class MergeBu extends Example {
         }
     }
 
+    //遍免检测两个待归并数组中的元素是否取尽
+    public void mergeBreif(Comparable[] a,int lo,int mid,int hi){
+        int N=a.length;
+        for(int k=lo;k<=mid;k++)aux[k]=a[k];
+        for(int k=mid+1;k<=hi;k++)aux[k]=a[k];
+        int i=lo,j=hi;
+        for(int k=lo;k<N;k++){
+            if(less(aux[i],aux[j]))a[k]=a[i++];
+            else a[k]=a[j--];
+        }
+    }
+
+
     public void merge(Comparable[] a,int lo,int mid,int hi){
         int N=a.length;
         int i=lo,j=mid+1;
