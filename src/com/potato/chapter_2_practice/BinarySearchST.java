@@ -54,4 +54,30 @@ public class BinarySearchST<Key extends Comparable<Key>,Value> {
         return keys[j]==key;
     }
 
+    public void delete(Key key){
+        assert !isEmpty();
+        int j=rank(key);
+        if(j<N&&keys[j]==key){
+            for(;j<N-1;j++){
+                keys[j]=keys[j+1];
+                values[j]=values[j+1];
+            }
+            keys[N-1]=null;
+            values[N-1]=null;
+            N--;
+        }
+    }
+
+    /**
+     * 小于等于key的最大键
+     * @param key
+     * @return
+     */
+    public Key floor(Key key){
+        int j=rank(key);
+        if (keys[j]==key)return key;
+        if(j==0)return null;
+        else return keys[j-1];
+    }
+
 }
