@@ -17,6 +17,7 @@ public class SequentialSearcrhST<Key, Value> {
 
         Node next;
 
+
         public Node(Key key, Value value, Node next) {
             this.key = key;
             this.value = value;
@@ -35,6 +36,7 @@ public class SequentialSearcrhST<Key, Value> {
         }
         if (!hasKey) {
             first = new Node(key, value, first);
+            N++;
         }
 
     }
